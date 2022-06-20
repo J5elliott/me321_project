@@ -3,10 +3,11 @@
 clear; clc; close all;
 
 %%initial parameter: unit: m, degree, rad/sec
-r1 = 7.8*10^(-2); % m  o2o3
-r2 = 2.5*10^(-2); % m  o2a2
-r3 = 8.5*1
-r4 = 
+r1 = 5*10^(-2); % m  O2O3
+r2 = 2*10^(-2); % m  O2A2
+r5 = 3*10^(-2); % m  BC
+r7 = (10*10^(-2))-r1 % m O2O4
+
 % and so on ...
 
 theta2 = 0:1:360; % from 0 to 360 with step 1: [0,1,2,3,4....360]
@@ -28,9 +29,15 @@ theta5= 0:1:360;
 
 %% Part 1- Calculations for kinematic variables, caculated based on loop closure eqn
 
-r3 = % ENTER YOUR CODE HERE %
-theta3 = % ENTER YOUR CODE HERE %
-r4 = 
+theta3 = atan((r2*sin(theta2))/(r2*cos(theta2)-r1));
+r3 = r2*cos(theta2 - theta3) - r1*cos(theta3);
+
+r4 = 8.5*10^(-2) - r3;
+
+theta5 = acos((-r2*sin(theta2)-r4*sin(theta3) - r7)/(r5));
+
+r6 = -r2*sin(theta2) -r4*sin(theta3) - r5*sin(theta5);
+
 % Hint: Check if the angle needs to be adjusted to its true value
 % Hint: Check this for all other angles too
 
@@ -41,6 +48,10 @@ r4 =
 dtheta3 = diff(theta3); %
 ddtheta3 = diff(dtheta3); %
 
+dtheta5 = diff(theta5); %
+ddtheta5 = diff(dtheta5);%
+
+dr6 = diff(r6);%
 % and so on
 
 %% Plot vars;
